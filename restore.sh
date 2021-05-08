@@ -2,7 +2,7 @@
 DATE=$(date +%F_%T)
 NAME=$1
 SERIAL=$(udevadm info --query=all --name=/dev/$NAME | grep -o "ID_SERIAL_SHORT=.*" | grep -oE '[0-9]' | tr -d '\n')
-LOG="/usr/local/etc/${SERIAL}-${DATE}.log"
+LOG="/usr/local/etc/${SERIAL}-${DATE}"
 
 echo "START...\n" > $LOG;
 
