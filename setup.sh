@@ -13,7 +13,9 @@ else
 fi
 
 echo "Copying files..."
+wget https://raw.githubusercontent.com/pierce403/keyhunter/master/keyhunter.py 
 cp ./restore.sh /usr/local/bin/;
+cp ./keyhunter.py /usr/local/bin;
 cp ./60-detect.rules /etc/udev/rules.d/;
 
 echo "Restart service..."
