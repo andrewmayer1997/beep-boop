@@ -5,11 +5,11 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-if test -f /bin/python2; then
-    echo "- Detecting python2. Ok."
+if test -z $(which python2); then
+  echo "- Err! Not found (python2). Exit."
+  exit 1
 else
-    echo "- Detecting python2. Not found"
-    exit 1
+  echo "- Detecting python2. Ok."
 fi
 
 echo "Copying files..."
@@ -22,5 +22,9 @@ cp ./60-detect.rules /etc/udev/rules.d/;
 
 echo "Restart service..."
 systemctl restart systemd-udevd.service;
+
+echo "Enable beep-boop..."
+modprobe pcspkr
+usermod -a -G input root
 
 echo "Done!"
